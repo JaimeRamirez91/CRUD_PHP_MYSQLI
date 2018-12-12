@@ -1,0 +1,55 @@
+1) Crear una base de datos llamada:  crud
+
+2) Crear una tabla llamada productos: con lo campos
+
+     id: int auto_increment
+     nombre: varchar (50)
+     precio: double
+     marca:  varchar (50)
+
+3) Insertar 2 productos
+
+4) Crear un proyecto en netbeans llamado testCrud
+5) Crear las siguientes carpetas: Controlador, Modelo, Vistas y Test  
+
+6) Dentro de la carpeta Modelo crear la carpeta bd
+
+7) Dendro de bd, crear un php file llamado Config     
+8) Dendro de bd, crear un php class llamado Conexion
+9) Dentro de Test, crear un php file llamado TestBD
+10) Dentro de Modelo crear php class llamado ProductoModel
+11)Dento de Test crear  php file TestModel 
+12)Dentro de Controlador crear php class llamado ProductoController 
+13)Dentro de Vistas crear php web page llamado ProductoListaView   
+
+Ejer: crear una tabla llamada moviles: los campos seran los
+que usted considere convenientes, insertarle datos y crear 
+El modelo, controlador y vista respectiva.       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CREATE DATABASE crud;
+USE crud; 
+
+CREATE TABLE productos(
+     id int AUTO_INCREMENT,
+     marca varchar(50),
+    nombre varchar(50),
+    precio double,
+    PRIMARY KEY(id)
+); 
+
+INSERT INTO productos (marca, nombre, precio) VALUES ("Nike", "T-Shirt", 100);
+INSERT INTO productos (marca, nombre, precio) VALUES ("ADIDAS", "T-Shirt", 200);
+      

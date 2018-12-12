@@ -10,9 +10,8 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
-        <ul>
-            <li><a href="Vista/ProductoView.php"> Productos </a></li>
-            <li><a href="Vista/ProductoView.php"> Agregar Productos</a></li>
-        </ul>
+        <?php
+        // put your code here
+        ?>
     </body>
 </html>
