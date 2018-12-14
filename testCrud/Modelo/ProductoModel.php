@@ -66,7 +66,7 @@
                         $cadena = 'INSERT INTO productos'.' (nombre, marca, precio) VALUES('. $insert.')';
                          //Verificacion de insercion
                         if ($this->db->query($cadena) === TRUE and $this->db->affected_rows==true) {
-                             $mensaje =  "Dato agregado"."<br>";
+                             $mensaje =  " Dato agregado ";
                         } else {
                             $mensaje = "Error: " . $cadena . "<br>" . $this->db->error;
                         }

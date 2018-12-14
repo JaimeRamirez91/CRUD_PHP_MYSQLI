@@ -8,6 +8,8 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title></title>
+        <link rel="stylesheet" href="asets/css/bootstrap.css">
+        <link rel="stylesheet" href="asets/css/estilos.css">
         <?php
             require '../Controlador/ProductoController.php';
             $objetoProducto = new ProductoController();
@@ -18,42 +20,45 @@ and open the template in the editor.
                  $mensaje = "";
              }
         ?>
-        <style>
-            h1{
-                text-align: center;
-                font-size: 40px;
-                margin-top: 10%;
-            }
-            form{
-                margin: 0 auto;
-                width: 50%;
-                margin-top: 20px;
-            }
-            form input{
-                width: 100%;
-                margin: 5px;
-            }
-            section{
-                margin: 0 auto;
-                width: 50%;
-            }
-        </style> 
-        
     </head>
-    <body>
-         <?php
-           echo "<h2>".$mensaje."</h2>";
-         ?>
-        <h1>AGREGAR PRODUCTOS</h1>
-        <section>
-             <button  onclick="window.location.href='ProductoListaView.php'">Ver productos</button>
-        </section>
-        <!--formulario add productos -->
-        <form action="" method="post">
-            Nombre:<input type="text" name="nombre" placeholder="Nombre producto" required="" autofocus="1">
-            Precio:<input type="number" name="precio" placeholder="Precio producto" required="">
-            Marca:<input type="text" name="marca" placeholder="Marca producto" required="">
-            <input type="submit">  
-        </form>  
+    <body>  
+        <section class="container-fluid" > <!--inicio contenedor principal--->
+        <?php 
+            //importamos el menu
+            include '../Vistas/Plantillas/ManuPlantilla.php';
+            //validamos
+            if($mensaje!= null){
+                   echo "<div class='alert alert-success col-lg-6 offset-3 alert-custom'>
+                       <strong>REGISTRO AGREGADO: ".$_POST["nombre"]." </strong> de forma satisfactoria
+                       </div>";
+            }
+                 
+        ?>
+            <section class="offset-lg-3 col-lg-6 col-md-10" id="cntFormProducto"> <!--inicio contenedor form-->
+                 <section class="row" >
+                     <h3 class="col-lg-12 text-white">AGREGAR PRODUCTOS</h3>
+                 </section>       
+                 <form action="" method="post" ><!--formulario add productos -->
+                     <div class="form-group">
+                         <label class="text-white">Nombre: </label>
+                         <input type="text"  class="form-control" name="nombre" placeholder="Nombre producto" required="" autofocus="1">
+                     </div>
+                     <div class="form-group">
+                           <label class="text-white">Precio:</label>
+                           <input type="number"  class="form-control" name="precio" placeholder="Precio producto" required="">
+                     </div>
+                     <div class="form-group">
+                             <label class="text-white">Marca:</label>
+                             <input type="text" name="marca"  class="form-control" placeholder="Marca producto" required="">
+                     </div>
+                     <div class="form-group col-10 offset-3">
+                            <input  class="btn btn-outline-success btn-custom-form" type="submit"> 
+                            <input  class="btn btn-outline-danger btn-custom-form" type="reset">   
+                     </div>
+                        
+                 </form> <!--fin formulario add productos--> 
+            </section> <!--fin contenedor form-->
+            
+        </section> <!-- Fin contenedor principal-->
     </body>
 </html>
