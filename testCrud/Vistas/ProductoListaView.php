@@ -5,9 +5,9 @@
         <title></title>
          <link rel="stylesheet" href="asets/css/bootstrap.css">
          <link rel="stylesheet" href="asets/css/estilos.css">
-         <script type="text/javascript" src="../Vistas/asets/js/paginator.js"></script>
-          <script type="text/javascript" src="../Vistas/asets/js/table.js"></script>
-         
+         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+         <link rel="stylesheet" href="http://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+         <script src="http://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
         <?php
             require_once '../Controlador/ProductoController.php';
             //objeto
@@ -98,18 +98,33 @@
                        
                     ?>
               </table> 
-               <br>
-               <nav class='pagination justify-content-center'>
-                   <li class="page-item disabled"><a class="page-link" href="#">Previus</a></li>
-                   <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                   <li class="page-item"><a class="page-link" href="#">2</a></li>
-                   <li class="page-item"><a class="page-link" href="#">3</a></li>
-                   <li class="page-item"><a class="page-link" href="#">Next</a></li>
-               </nav>
+               
             </div>
             
         </section>
         
     </section>
+        <script>
+            $(document).ready(function() {
+            $('#tbProductos').DataTable( {
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ ",
+                    "zeroRecords": "Datos no encontrados - upss",
+                    "info": "Mostar paginas _PAGE_ de _PAGES_",
+                    "infoEmpty": "Datos no encontrados",
+                    "infoFiltered": "(Filtrados por _MAX_ total registros)",
+                    "search":         "Buscar:",
+                    "paginate": {
+                            "first":      "First",
+                            "last":       "Anterior",
+                            "next":       "Siguiente",
+                            "previous":   "Anterior"
+                    },
+                    
+                }
+            } );
+} );
+           
+        </script>
     </body>
 </html>

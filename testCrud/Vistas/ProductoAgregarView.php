@@ -60,5 +60,6 @@ and open the template in the editor.
             </section> <!--fin contenedor form-->
             
         </section> <!-- Fin contenedor principal-->
+        
     </body>
 </html>
