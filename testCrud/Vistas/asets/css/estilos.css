@@ -65,3 +65,10 @@ nav{
 table{
     text-align: center;
 } 
+.cntEliminar{
+    text-align: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 10%;
+}
