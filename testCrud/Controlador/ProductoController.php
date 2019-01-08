@@ -6,8 +6,8 @@ class ProductoController {
     //Muestra el listado de productos
      public function listarProductos(){
            $objProducto = new ProductoModel();
-           $objProducto->getProductos();
-           return $objProducto;    
+           $resultado = $objProducto->getProductos();
+           return $resultado;    
       }
       
       public function agregarProductos($nombre, $marca, $precio){
@@ -41,6 +41,7 @@ class ProductoController {
 }
 //test
 $objeto = new ProductoController();
+
 //echo $objeto->agregarProductos("jaime", "x", 1);
 //echo $objeto->eliminarProductos(100);
 //var_dump($objeto->listarProductos());

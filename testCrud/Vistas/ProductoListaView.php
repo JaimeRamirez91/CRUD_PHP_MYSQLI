@@ -65,24 +65,22 @@
                 <h1 id="productoH1">Tabla Productos</h1>
                 <table id="tbProductos" class="table"> 
                     <?php
-                       // var_dump($objProducto->listarProductos());
-                       $producto = $objProducto->listarProductos();
+                        $producto = $objProducto->listarProductos();
+                       //$producto = $objProducto->listarProductos();
+                       //var_dump($producto);
                        //acceso a los arreglos de forma individual
                        $contador = 0;
-                       foreach ($producto as $arreglos) {
-                           echo '<thead class="table table-bordered table-striped table-hover bg-info"> '
+                       echo '<thead class="table table-bordered table-striped table-hover bg-info"> '
                                 . '<tr> <th scope="col"> Correlativo </th> <th scope="col"> Nombre </th>  '
                                 .'<th scope="col"> Precio </th> <th scope="col"> Marca </th scope="col"> <th scope="col"> Acciones </th>'
                                 . ' </tr> </thead>';
+                           
+                       foreach ($producto as $arreglos) {
                            //acceso a los elementos del arreglo de forma individual
 
                            foreach ($arreglos as $elemento) {
-                            if($contador == 0){
-                                $contador += 1;
-                                echo "<tbody>";
-                            }else{
-                                
-                                echo '<tr>'
+                                 echo "<tbody>";
+                                 echo '<tr>'
                                          .'<td>'.$elemento['id'].'</td>'
                                          .'<td>'.$elemento['nombre'].'</td>'
                                          .'<td>'.$elemento['precio'].'</td>'
@@ -90,7 +88,7 @@
                                          .'<td>'.'<a href="ProductoModificarView.php?id='.$elemento['id'].'&nombre='.$elemento['nombre'].'&marca='.$elemento['marca'].'&precio='.$elemento['precio'].'">Editar</a> | '
                                          .'<a href="ProductoEliminarView.php?id='.$elemento['id'].'&nombre='.$elemento['nombre'].'">Eliminar</a>'.'</td>' 
                                          .'</tr>';  
-                            }
+                            
 
                        }
                        }

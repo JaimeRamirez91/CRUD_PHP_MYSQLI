@@ -11,7 +11,6 @@
             private $marca = null;
             private $precio = null;
             
-
             //metodos de acceso
             function getId() {
                 return $this->id;
@@ -37,42 +36,45 @@
             function setId($id) {
                      $this->id = $id;
             }
-
-              
+  
             //Seleccionamos todos los productos
             public function getProductos(){
-                //Consulta 
-                $consulta = $this->db->query("select * from productos;");
-                //validacion
-                $this->productos = [['id'=>" ",'nombre'=>" ",'precio'=> " ", 'marca'=>" "]];
+                $productos = array();
+                $consulta = $this->db->query("select * from productos;");//Consulta
                 //recorido
                 while( $filas = $consulta->fetch_array(MYSQLI_ASSOC)){
                      //inserción en el vector
-                        $this->productos[] = $filas;
+                     array_push($productos, 
+                                array('fila'  => [
+                                                  'id'=> $filas['id'], 
+                                                  'nombre'=> $filas['nombre'],
+                                                  'marca'=> $filas['marca'],
+                                                  'precio'=> $filas['precio']
+                                                  ]
+                                      )
+                                );
                 }
 
                  //retorno de los productos
-                 return $this->productos;    
+                 return $productos;    
             } 
             
              //Insert
             public function setProducto(){
                 //validación datos vacios
-                //var_dump($this->nombre);
                 if($this->nombre != null and $this->precio !=NULL and $this->marca != NULL ){
-                        //datos a insertar
-                        $insert = ' "'.$this->getNombre().'", "'.$this->getMarca().'", '. $this->getPrecio()." ";
-                         //cadena
-                        $cadena = 'INSERT INTO productos'.' (nombre, marca, precio) VALUES('. $insert.')';
-                         //Verificacion de insercion
-                        if ($this->db->query($cadena) === TRUE and $this->db->affected_rows==true) {
-                             $mensaje =  " Dato agregado ";
+                        //cadena insertcion
+                        $cadena = "INSERT INTO productos (nombre, marca, precio) VALUES('$this->nombre','$this->marca',$this->precio )";
+                        //Insercion
+                        $resultado = $this->db->query($cadena);
+                        //validación
+                        if ($resultado === TRUE) {
+                            $mensaje =  "Dato agregado";
                         } else {
-                            $mensaje = "Error: " . $cadena . "<br>" . $this->db->error;
+                            $mensaje = "Error: $cadena <br>".$this->db->error;
                         }
-
                 }else{
-                    $mensaje = "Error no ha enviado todos los datos necesarios."; 
+                        $mensaje = "Error no ha enviado todos los datos necesarios."; 
                 }
                 //Retorno 
                 return $mensaje;
@@ -82,12 +84,14 @@
             public function deleteProducto(){
                 if($this->id != null){
                         //cadena
-                        $cadena = 'DELETE FROM productos where id='.$this->id.';';
-                        //Verificacion de insercion
-                        if ($this->db->query($cadena) === TRUE and $this->db->affected_rows==true) {
-                             $mensaje =  "Dato eliminado"."<br>";
+                        $cadena = "DELETE FROM productos where id = $this->id";
+                        //insercion
+                        $resultado  = $this->db->query($cadena);
+                        //validacion 
+                        if ($resultado === TRUE) {
+                             $mensaje =  "Dato eliminado <br>";
                         } else {
-                             $mensaje = "Error: " . $cadena . "<br>" . $this->db->error."Registro no encontrado.<br>";
+                             $mensaje = "Error:  $cadena <br> $this->db->error Registro no encontrado.<br>";
                         }  
  
                 } else {
@@ -98,19 +102,17 @@
             
             public function updateProducto(){
                  //validación datos vacios
-                //var_dump($this->nombre);
                 if($this->nombre != null and $this->precio != NULL and $this->marca != NULL and $this->id != null){
-                        //datos a insertar
-                        $SET = ' SET nombre = "'.$this->getNombre().'",  marca = "'.$this->getMarca().'", precio = '.$this->getPrecio()."";
-                         //cadena
-                        $cadena = 'UPDATE productos '. $SET .' WHERE id ='. $this->id.';';
-                        //Verificacion de insercion
-                        if ($this->db->query($cadena) === TRUE and $this->db->affected_rows==true) {
-                             $mensaje =  "Dato Modificado"."<br>";
+                        //cadena
+                        $cadena = "UPDATE productos SET nombre = '$this->nombre', marca = '$this->marca', precio = $this->precio  WHERE id = $this->id";
+                        //insercion
+                        $resultado = $this->db->query($cadena);
+                        //validación
+                        if ($resultado === TRUE) {
+                                $mensaje =  "Dato Modificado"."<br>";
                         } else {
-                            $mensaje = "Error: x" . $cadena . "<br>" . $this->db->error;
+                                $mensaje = "Error: $cadena<br> $this->db->error";
                         }
-
                 }else{
                     $mensaje = "Error no ha enviado todos los datos necesarios."; 
                 }
@@ -118,9 +120,8 @@
                 return $mensaje;    
             }
         }   
-        
-    
-
+  
+ 
 
 
 
